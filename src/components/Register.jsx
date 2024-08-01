@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 
 import bgImage from "../assets/bg_sathyabama.png";
 import logo from "../assets/sathyabama_logo.jpg";
+import { getFormData } from "../hooks/getFormData";
 
-import { getFormData } from "../hooks/getFormData.jsx";
-
-const Login = () => {
+const Register = () => {
   const loginData = (eve) => {
     eve.preventDefault();
     const { isEmpty, data } = getFormData(eve.currentTarget);
@@ -20,7 +19,7 @@ const Login = () => {
     >
       <form
         onSubmit={loginData}
-        className="container mx-3 w-fit h-fit p-10 backdrop-brightness-125 bg-black/55 flex flex-col items-center justify-items-start gap-8 rounded"
+        className="container w-fit h-fit p-10 backdrop-brightness-125 bg-black/50 flex flex-col items-center justify-items-start gap-8 rounded"
       >
         <a href="https://www.sathyabama.ac.in/" target="_blank">
           <img
@@ -29,20 +28,14 @@ const Login = () => {
             className="h-[8vh] w-[60vw] md:w-[18vw]"
           />
         </a>
-        <select
-          name="user"
-          className=" w-[72vw] md:w-[24vw] h-[6vh] text-gray-700 py-2 font-bold rounded backdrop-brightness-125 px-4 focus:outline-none"
-          required
-        >
-          {/* <option value="newUser ">New User</option> */}
-          <option value="projects">Projects</option>
-          <option value="facultyIncharge">Faculty Incharge</option>
-          <option value="admin">Admin</option>
-        </select>
+        <span className=" w-[72vw] md:w-[24vw]  h-[6vh] text-gray-100 font-bold bg-[#831238] bg-opacity-90 flex justify-center items-center rounded">
+          New Project Registration
+        </span>
+        <input type="text" name="user" defaultValue="newProject" hidden />
         <input
-          type="text"
+          type="email"
           name="id"
-          placeholder="Email / Project Id"
+          placeholder="Email"
           className=" w-[72vw] md:w-[24vw]  h-[6vh] text-gray-700 py-2 font-bold rounded backdrop-brightness-125 px-4 focus:outline-none"
           required
         />
@@ -60,25 +53,14 @@ const Login = () => {
         >
           Submit
         </button>
-        <div className=" w-[72vw] md:w-[24vw] flex flex-col gap-3 md:gap-0 md:flex-row md:justify-around ">
-          <span className="text-white font-bold mx-auto">
-            New Project &nbsp;
-            <Link
-              to="/register"
-              className="text-blue-400 underline font-normal"
-            >
-              register?
-            </Link>
-          </span>
-          <Link
-            to="/forgot_password"
-            className="text-blue-400 underline mx-auto"
-          >
-            forgot password?
+        <span className="text-white font-bold">
+          Already registered &nbsp;
+          <Link to="/" className="text-blue-400 underline font-normal">
+            login?
           </Link>
-        </div>
+        </span>
       </form>
     </div>
   );
 };
-export default Login;
+export default Register;
